@@ -1,0 +1,50 @@
+# Ignore binary files for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Swap files and IDE-specific files
+*.swp
+.idea
+*.code-workspace
+*.iml
+.DS_Store
+
+# Temporary and build files
+src/*/tmp
+src/*/run-build
+docker/dev/.env
+temp
+
+# Git directory
+.git
+
+# Go project files
+pkg
+
+# Neo4j data
+neo4j_data
+
+# Preprocessed data
+preprocess_data/data_out/*
+preprocess_data/sampling_data_out/*
+preprocess_data/data_temp/*
+preprocess_data/data_out/*.txt
+preprocess_data/*.txt
+preprocess_data/data_out_bak
+
+# Datasets
+datasets/*.gz
+datasets/*.tsv
+datasets/*.npy
+
+# Python virtual environment
+venv

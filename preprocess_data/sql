@@ -1,0 +1,82 @@
+MATCH (m:Movie)-[:DIRECTED_BY]->(d:Director),
+      (m)-[:HAS_CAST]->(p:Person),
+      (m)-[:HAS_GENRE]->(g:Genre),
+      (m)-[:HAS_RATING]->(r:Rating)
+RETURN m.tconst AS tconst, m.primaryTitle AS title,
+       collect(distinct d.primaryName) AS directors,
+       collect(distinct p.primaryName) AS cast,
+       collect(distinct g.name) AS genres,
+       r.averageRating AS rating, r.numVotes AS votes
+
+MATCH (m:Movie)-[:DIRECTED_BY]->(d:Director),
+      (m)-[:HAS_CAST]->(p:Person),
+      (m)-[:HAS_GENRE]->(g:Genre),
+      (m)-[:HAS_RATING]->(r:Rating)
+RETURN count(m)
+
+MATCH (m:Movie{tconst: "tt32477379"})
+RETURN m
+
+MATCH (m:Movie)
+RETURN count(m)
+
+MATCH (p:Person)
+RETURN count(p)
+
+MATCH (d:Director)
+RETURN count(d)
+
+MATCH (m:Movie)-[:DIRECTED_BY]->(d:Director)
+RETURN count(m) AS numMoviesWithDirectors
+
+MATCH (m:Movie)-[:HAS_CAST]->(p:Person)
+RETURN count(m) AS numMoviesWithCast
+
+MATCH (m:Movie)-[:HAS_GENRE]->(g:Genre)
+RETURN count(m) AS numMoviesWithGenres
+
+MATCH (m:Movie)-[:HAS_RATING]->(r:Rating)
+RETURN count(m) AS numMoviesWithRatings
+
+MATCH (m:Movie{tconst: "tt32477379"})
+OPTIONAL MATCH (m)-[:DIRECTED_BY]->(d:Director)
+OPTIONAL MATCH (m)-[:HAS_CAST]->(p:Person)
+OPTIONAL MATCH (m)-[:HAS_GENRE]->(g:Genre)
+OPTIONAL MATCH (m)-[:HAS_RATING]->(r:Rating)
+RETURN m.tconst AS tconst, m.primaryTitle AS title,
+       collect(distinct d.primaryName) AS directors,
+       collect(distinct p.primaryName) AS cast,
+       collect(distinct g.name) AS genres,
+       avg(r.averageRating) AS rating, sum(r.numVotes) AS votes
+
+
+从 Neo4j 中查询知识图谱数据
+优点：
+数据关系明确：Neo4j 是一种图数据库，非常擅长处理数据之间的关系。在 Neo4j 中，数据节点和它们之间的关系显式存储和管理，这使得查询时能够非常清晰地表达数据之间的关系。
+
+灵活的查询语言：Cypher 是 Neo4j 的查询语言，它专门设计用于处理图形数据，能够方便地查询复杂的数据关系和路径。
+
+数据一致性：使用图数据库，可以确保查询到的数据关系的一致性和准确性，因为数据之间的关系是数据库的一部分，而不是在脚本中临时构造的。
+
+高效的关系处理：图数据库在处理关系查询时效率更高，尤其是在复杂的关系和多跳查询的情况下。
+
+在脚本中清洗源数据
+缺点：
+数据关系处理复杂：用脚本来手动处理复杂的数据关系非常繁琐，并且容易出错，尤其是当数据规模变大时。
+
+一致性难保证：如果数据关系处理逻辑存在错误或不一致，可能导致最终数据的关系性和准确性存在问题。
+
+性能瓶颈：处理大规模数据关系时，脚本可能面临性能瓶颈，尤其是在多次数据遍历和关系匹配的情况下。
+
+总结
+Neo4j 查询方法：
+更适合处理复杂数据关系，并且能确保数据关系的一致性和准确性。
+在需要进行复杂关系查询或处理大量数据关系时，图数据库的性能和效率更高。
+
+
+MATCH (u:User)-[r:RATED]->(m:Movie)
+RETURN u, r, m
+LIMIT 10
+
+LOAD CSV WITH HEADERS FROM 'file:///filtered_high_quality_movies.csv' AS row
+RETURN row LIMIT 10

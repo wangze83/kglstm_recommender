@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  neo4j:
+    image: neo4j
+    ports:
+      - "7687:7687"
+      - "7474:7474"
+    environment:
+      - NEO4J_AUTH=neo4j/password
+      - NEO4J_server_memory_heap_max__size=8G
+      - NEO4J_server_memory_heap_initial__size=4G
+      - NEO4J_dbms_memory_pagecache_size=2G
+      - NEO4JLABS_PLUGINS=["apoc"]
+    volumes:
+      - ../neo4j_data/data:/data
+      - ../neo4j_data/logs:/logs
+      - ../neo4j_data/plugins:/plugins
+      - ../preprocess_data/data_out:/var/lib/neo4j/import
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

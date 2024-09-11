@@ -1,0 +1,62 @@
+# Swap files
+*.swp
+
+# IDE configuration files
+.idea
+*.code-workspace
+*.iml
+.DS_Store
+
+# Temporary and build files
+src/*/tmp
+src/*/run-build
+docker/dev/.env
+
+# Go language specific files
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Project-specific build and temporary files
+*/*/_dev
+*/*/go.sum
+pkg
+_release
+_dev
+
+# Neo4j and knowledge graph data
+neo4j_data
+knowleage-graph/graphservers
+
+# Logs and temp files
+web/log/*.log
+temp
+
+# Web examples and graph components
+web/examples
+web/igraph
+
+# Preprocessed data
+preprocess_data/data_out/*
+preprocess_data/data_temp/*
+preprocess_data/sampling_data_out/*
+preprocess_data/*.txt
+preprocess_data/data_out/*.txt
+preprocess_data/data_out_bak
+preprocess_data/data_temp
+
+# Datasets
+datasets/*.tsv
+datasets/*.tsv.gz
+datasets/*.npy
+
+# Python virtual environment
+venv
