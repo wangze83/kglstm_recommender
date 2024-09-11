@@ -15,7 +15,7 @@ Keywords: Personalised Recommendation System; Knowledge Graph; LSTM Model; Atten
 ![](img/Complex_relationships_constructed.png)
 
 ## LSTM model structure based on attention mechanism
-![](img/LSTM_model structure_based_on_attention_mechanism.png)
+![](img/LSTM_model_structure_based_on_attention_mechanism)
 
 ## Neo4j relational graph database builds user-movie-feature relationship network
 ![](img/User-movie-feature_relationship_network.png)
